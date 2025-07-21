@@ -27,7 +27,8 @@ pages:
     - mv dist public_temp # Перемещаем dist во временную папку
     - rm -rf public # Удаляем старую public, если она есть
     - mv public_temp public # Переименовываем временную папку в public
-    - cp -r public/* ../ # Копируем содержимое public в корень
+    - mkdir -p ../public # Создаем папку public в корне, если её нет
+    - cp -r public/* ../public/ # Копируем содержимое в корневую public
   artifacts:
     paths:
       - public
