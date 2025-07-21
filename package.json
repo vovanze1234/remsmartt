@@ -1,0 +1,10 @@
+{
+    "name": "repair-service",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "concurrently \"cd server && node server.js\" \"cd client && npm run dev\" \"cd dashboard && npm run dev\""
+    },
+    "devDependencies": {
+      "concurrently": "^8.2.2"
+    }
+  }
