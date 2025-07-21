@@ -25,11 +25,8 @@ pages:
   script:
     - cd client
     - mv dist public
-    - cp -r public/* ./public/
   artifacts:
     paths:
       - public
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH' # Деплой только в main
-  only:
-    - main
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
