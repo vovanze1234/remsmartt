@@ -1,7 +1,7 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
-import '../styles/home.scss'; // Подключение стилей для Home
+import '../styles/home.scss';
 
 const Home = () => {
   return (

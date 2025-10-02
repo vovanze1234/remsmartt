@@ -1,24 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const cors = require('cors'); // Убедитесь, что пакет установлен
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware для парсинга JSON и CORS
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000' // Разрешаем только этот источник
+  origin: 'http://localhost:3000' 
 }));
 
-// Подключение к локальному MongoDB
 const mongoURI = 'mongodb://localhost:27017/newsDB';
 mongoose.connect(mongoURI, { useNewUrlParser: true })
   .then(() => console.log('Connected to local MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Определение схемы для акций
 const newsSchema = new mongoose.Schema({
   title: { type: String, required: true },
   text: { type: String, required: true },
@@ -28,10 +25,19 @@ const newsSchema = new mongoose.Schema({
 
 const News = mongoose.model('News', newsSchema);
 
-// Статические файлы для фронтенда
+const deviceSchema = new mongoose.Schema({
+  manufacturer: { type: String, required: true },
+  model: { type: String, required: true },
+  priceScreen: { type: Number, required: true },
+  priceBattery: { type: Number, required: true },
+  priceBackCover: { type: Number, required: true },
+  priceOther: { type: Number }
+}, { timestamps: true });
+
+const Device = mongoose.model('Device', deviceSchema);
+
 app.use(express.static(path.join(__dirname, '../dist')));
 
-// API для получения всех акций
 app.get('/api/akcii', async (req, res) => {
   try {
     const news = await News.find().sort({ publishDate: -1 });
@@ -41,10 +47,9 @@ app.get('/api/akcii', async (req, res) => {
   }
 });
 
-// API для добавления акции
 app.post('/api/akcii', async (req, res) => {
   try {
-    console.log('Received POST request with data:', req.body); // Лог для отладки
+    console.log('Received POST request with data:', req.body);
     const { title, text, publishDate, imageUrl } = req.body;
     const newNews = new News({ title, text, publishDate, imageUrl });
     const savedNews = await newNews.save();
@@ -54,7 +59,15 @@ app.post('/api/akcii', async (req, res) => {
   }
 });
 
-// Запуск сервера
+app.get('/api/devices', async (req, res) => {
+  try {
+    const devices = await Device.find();
+    res.json(devices);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
