@@ -1,15 +1,29 @@
-import React from "react";
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const FAQList = ({ faqs }) => {
-  if (!faqs || faqs.length === 0) return <p>Вопросов пока нет</p>;
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
-    <div>
+    <div className="faq-list">
       {faqs.map((item, index) => (
-        <details key={index}>
-          <summary>{item.question}</summary>
-          <div>{item.answer}</div>
-        </details>
+        <div 
+          key={index} 
+          className={`faq-item ${openIndex === index ? "open" : ""}`}
+          onClick={() => toggle(index)}
+        >
+          <div className="faq-question">
+            <h3>{item.question}</h3>
+            {openIndex === index ? <ChevronUp /> : <ChevronDown />}
+          </div>
+          <div className="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </div>
       ))}
     </div>
   );

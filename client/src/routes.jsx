@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 import Home from './pages/Home';
 import Uslugi from './pages/Uslugi';
 import About from './pages/About';
@@ -10,12 +11,14 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/uslugi" element={<Uslugi />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/accii" element={<Accii />} />
-        <Route path="/common-problems" element={<CommonProblems />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="uslugi" element={<Uslugi />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="accii" element={<Accii />} />
+          <Route path="common-problems" element={<CommonProblems />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

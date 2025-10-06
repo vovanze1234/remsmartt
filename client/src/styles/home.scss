@@ -1,75 +1,188 @@
-.HomePage {
-  &__h3 {
-    text-align: left;
-    font-size: 34px;
+.home-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.home-intro {
+  text-align: center;
+  margin: 2rem 0;
+
+  h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.6;
   }
 }
 
-.HomePage__preimushestva {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
-
-  .HomePage__preimushestva-item {
-    text-align: center;
-    max-width: 420px;
-    width: 100%;
-    background-color: #efeeef;
-    padding: 20px;
-    border-radius: 20px;
-
-    .HomePage__preimushestva-icon {
-      width: 100%;
-      height: 300px;
-      margin-bottom: 10px;
-      object-fit: cover;
-    }
-
-    .HomePage__preimushestva-title {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: #4a2c6a;
-    }
-
-    .HomePage__preimushestva-text {
-      font-size: 0.9rem;
-      color: #666;
-    }
-  }
+.home-section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 3rem 0 1.5rem;
+  color: var(--primary);
 }
 
-.HomePage__popularuslugi {
+.home-benefits {
   display: flex;
+  gap: 1.5rem;
   justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
 
-  .HomePage__popularuslugi-item {
-    text-align: center;
-    max-width: 420px;
-    width: 100%;
-    background-color: #efeeef;
-    padding: 20px;
-    border-radius: 20px;
+.home-benefits .benefit {
+  flex: 1 1 250px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
 
-    .HomePage__preimushestva-icon {
-      width: 100%;
-      height: 300px;
-      margin-bottom: 10px;
-      object-fit: cover;
-    }
+.home-benefits .benefit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
 
-    .HomePage__popularuslugi-title {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: #4a2c6a;
-    }
+.home-benefits svg {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
 
-    .HomePage__popularuslugi-text {
-      font-size: 0.9rem;
-      color: #666;
-    }
-  }
+.home-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.service-card svg {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.slider-container {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 450px;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+.slide-overlay {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  color: white;
+  z-index: 2;
+}
+
+.slide-overlay h2 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.slide-overlay p {
+  margin: 0;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  padding: 0 10px;
+  cursor: pointer;
+  z-index: 3;
+  transition: 0.3s;
+}
+
+.slider-arrow:hover {
+  color: var(--accent);
+}
+
+.slider-arrow.prev {
+  left: 15px;
+}
+
+.slider-arrow.next {
+  right: 15px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+}
+
+.slider-dots .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slider-dots .dot.active {
+  background: var(--accent);
+  transform: scale(1.2);
 }

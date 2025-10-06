@@ -2,26 +2,14 @@
     "name": "repair-service",
     "version": "1.0.0",
     "scripts": {
-        "start": "concurrently \"cd server && node server.js\" \"cd client && npm run dev\" \"cd dashboard && npm run dev\""
+        "dev": "concurrently \"cd server && node server.js\" \"cd client && npm run dev\""
     },
     "devDependencies": {
         "concurrently": "^8.2.2"
     },
     "dependencies": {
-        "mongoose": "^8.16.5"
-    },
-    "description": "",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://gitlab.com/vovanze1234/remsmart.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "type": "commonjs",
-    "bugs": {
-        "url": "https://gitlab.com/vovanze1234/remsmart/issues"
-    },
-    "homepage": "https://gitlab.com/vovanze1234/remsmart#readme"
+        "lucide-react": "^0.544.0",
+        "mongoose": "^8.16.5",
+        "react-icons": "^5.5.0"
+    }
 }

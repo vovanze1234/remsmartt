@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 const Slider = () => {
   const slides = [
-    { id: 1, content: 'Slide 1: Laptop Repair', image: 'https://avatars.mds.yandex.net/get-ydo/2375918/2a000001754a1918a8cc18bf0a1d5d5f774f/diploma' },
-    { id: 2, content: 'Slide 2: PC Repair', image: 'https://avatars.mds.yandex.net/get-ydo/2375918/2a000001754a1918a8cc18bf0a1d5d5f774f/diploma' },
-    { id: 3, content: 'Slide 3: Phone Repair', image: 'https://avatars.mds.yandex.net/get-ydo/2375918/2a000001754a1918a8cc18bf0a1d5d5f774f/diploma' },
+    { id: 1, title: 'Ремонт ноутбуков', text: 'Быстро и качественно', image: '/img/slide3.jpeg' },
+    { id: 2, title: 'Ремонт ПК', text: 'Диагностика и ремонт любой сложности', image: '/img/slide1.jpeg' },
+    { id: 3, title: 'Ремонт смартфонов', text: 'Все бренды и модели', image: '/img/slide2.jpeg' },
   ];
 
-    const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -20,16 +20,23 @@ const Slider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Автопрокрутка каждые 5 секунд
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  },);
 
   return (
     <div className="slider">
-      <div className="slider-container" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+      <div
+        className="slider-container"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
         {slides.map((slide) => (
           <div key={slide.id} className="slide">
-            <img src={slide.image} alt={`Slide ${slide.id}`} />
+            <img src={slide.image} alt={slide.title} />
+            <div className="slide-overlay">
+              <h2>{slide.title}</h2>
+              <p>{slide.text}</p>
+            </div>
           </div>
         ))}
       </div>
